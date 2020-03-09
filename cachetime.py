@@ -16,9 +16,11 @@ parser.add_argument('-s', '--sequential', action='store_true')
 parser.add_argument('-r', '--random', action='store_true')
 parser.add_argument('-m', '--modify', action='store_true')
 parser.add_argument('--test', action='store_true')
-parser.add_argument('-p', '--plot', action='store_true') 
-parser.add_argument('minLg2', type=int, help="lg2 of the lower data array size")
-parser.add_argument('maxLg2', type=int, help="lg2 of the upper data array size")
+parser.add_argument('-p', '--plot', action='store_true')
+parser.add_argument('minLg2', type=int,
+                    help="lg2 of the lower data array size")
+parser.add_argument('maxLg2', type=int,
+                    help="lg2 of the upper data array size")
 parser.add_argument('outnm', type=str, default="cachetime2.out",
                     help="output file root name")
 
@@ -28,20 +30,20 @@ reps = 0
 raw_output = []
 for i in range(args.minLg2, args.maxLg2+1):
     if i < 12:
-	if args.modify:
-        	reps = 1000000000   # 1 B
-	else:
-        	reps = 10000000000   # 10 B
+        if args.modify:
+            reps = 1000000000   # 1 B
+        else:
+            reps = 10000000000   # 10 B
     elif i < 16:
-	if args.modify:
-        	reps = 100000000   # 100M
-	else:
-        	reps = 1000000000   # 1B
+        if args.modify:
+            reps = 100000000   # 100M
+        else:
+            reps = 1000000000   # 1B
     else:
-	if args.modify:
-        	reps = 100000000   # 10M 
-	else:
-        	reps = 1000000000   # 100M 
+        if args.modify:
+            reps = 100000000   # 10M
+        else:
+            reps = 1000000000   # 100M
 
     if args.test:
         reps = 10000
@@ -56,7 +58,6 @@ for i in range(args.minLg2, args.maxLg2+1):
         seqOrRand = '-s'
     else:
         seqOrRand = '-r'
-
 
     cpus = range(args.threads)
     cpus = [str(x) for x in cpus]
@@ -80,7 +81,6 @@ for i in range(args.minLg2, args.maxLg2+1):
     except:
         print("Error: running cachetime")
         exit(-1)
-
 
     if ((endTime-startTime) < 10.0):
         print("Warning: time < 10.0 seconds {:f}".format(endTime-startTime))
