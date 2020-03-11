@@ -1,2 +1,3 @@
 cachetime
-latencyLog.csv
+latencyLog*.csv
+cachetime.o

@@ -42,14 +42,16 @@ def main():
         else:
             SeqOrRand = '-r'
 
-        cpus = [str(i) for i in range(args.threads)]
+        cpus = [str(g) for g in range(args.threads)]
         cpus = ",".join(cpus)
         cmd = ['taskset', '-c', cpus]
 
         cmd.extend(['./cachetime', '-t:'+str(args.threads),
                     SeqOrRand, '--reps:'+str(reps), '--log2array:'+str(i)])
-
+        if args.modify:
+            cmd.extend(['-m'])
         try:
+            print(cmd)
             raw_output.append(subprocess.check_output(cmd))
         except:
             print("Error: running multirun")

@@ -97,14 +97,14 @@ int main(int argc, char *argv[])
 	bool fileEmpty = false;
 	ifstream checkFile;
 	ofstream writeToFile;
-	checkFile.open("latencyLog.csv");
+	checkFile.open("latencyLog2.csv");
 	if(checkFile.peek() == ifstream::traits_type::eof()) fileEmpty = true;
 	checkFile.close();
 	if(fileEmpty) {
-		writeToFile.open("latencyLog.csv");
-		writeToFile << "size,cores,latency,Sequential\n";
+		writeToFile.open("latencyLog2.csv");
+		writeToFile << "size,cores,latency,Sequential,modify\n";
 	} else {
-		writeToFile.open("latencyLog.csv", ios::app);
+		writeToFile.open("latencyLog2.csv", ios::app);
 	}
 	// Initialization
 	//setDefaults();
@@ -121,9 +121,7 @@ int main(int argc, char *argv[])
 			}
 		} 
 	}
-	 
-	if(nThreads==1) (*testLatency)(NULL);
-	else if(nThreads > 0) {
+	if(nThreads > 0) {
 		double* etList = (double*)malloc(nThreads*sizeof(double));
 		pthread_t* threadList = (pthread_t*)malloc(nThreads*sizeof(pthread_t));
 		for(int i=0; i < nThreads; i++) pthread_create(threadList+i, NULL, testLatency, (void*)(etList+i));
@@ -131,8 +129,7 @@ int main(int argc, char *argv[])
 		free(threadList);
 		double accum = 0;
 		for(int i=0; i<nThreads; i++) accum += *(etList+i);
-		writeToFile<<(1<<lg2Array)<<","<<nThreads<<","<<accum/nThreads<<","<<isSequential
-	<<"\n";	
+		writeToFile<<(1<<lg2Array)<<","<<nThreads<<","<<accum/nThreads<<","<<isSequential<<","<<modify<<"\n";	
 		writeToFile.close();
 	}
 }
