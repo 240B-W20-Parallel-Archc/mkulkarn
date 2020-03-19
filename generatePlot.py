@@ -11,7 +11,7 @@ dfx = df[df['cores'] == 1]
 dfx = dfx[dfx['Sequential'] == 0]
 dfx = dfx[dfx['modify'] == 0]
 ax = dfx.plot(x='log2array', y='latency', c='r', title='Random Read Latency')
-plt.show()
+#plt.show()
 for i in range(2,9):
 	dfx = df[df['cores'] == i]
 	dfx = dfx[dfx['Sequential'] == 0]
@@ -59,4 +59,4 @@ for i in range(2,9):
 	dfx.plot(x='log2array', y='latency', c=c[i-1], ax=ax3)
 ax3.legend([str(i) for i in range(1,13)], title='Thread Count')
 
-#plt.show()
+plt.show()

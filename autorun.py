@@ -9,7 +9,7 @@ def main():
 	allCombinations = [threads, SeqOrRand, modify]
 	combinations = list(itertools.product(*allCombinations))
 	for each_combination in combinations:
-		cmd = ['python3', 'multirun.py', '--minlg2', str(16), '--maxlg2', str(21), '--test','-t']
+		cmd = ['python3', 'multirun.py', '--minlg2', str(16), '--maxlg2', str(24), '--test','-t']
 		each_comblist = list(each_combination)
 		try:
 			each_comblist.remove('')
