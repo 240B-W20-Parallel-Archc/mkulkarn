@@ -35,7 +35,7 @@ def main():
                 reps = 10000
 
         if args.test:
-            reps = 10000
+            reps = 100
 
         if args.isSequential:
             SeqOrRand = '-s'

@@ -4,12 +4,12 @@ import itertools
 
 def main():
 	SeqOrRand = ['-s', '']
-	threads = [str(i+1) for i in range(12)]
+	threads = [str(i+1) for i in range(8)]
 	modify = ['-m', '']
 	allCombinations = [threads, SeqOrRand, modify]
 	combinations = list(itertools.product(*allCombinations))
 	for each_combination in combinations:
-		cmd = ['python3', 'multirun.py', '--minlg2', str(6), '--maxlg2', str(20), '-t']
+		cmd = ['python3', 'multirun.py', '--minlg2', str(16), '--maxlg2', str(21), '--test','-t']
 		each_comblist = list(each_combination)
 		try:
 			each_comblist.remove('')
